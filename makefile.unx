@@ -46,12 +46,12 @@ SUBDIR=plugins/
 rstub_BINARY=$(R)$(SUBDIR)dosbox_rstub$(PLUGIN)
 rebase_BINARY=$(R)$(SUBDIR)rebase_msdos$(PLUGIN)
 
-all: objdir $(rstub_BINARY) $(rebase_BINARY)
+all: objdir $(rstub_BINARY)
 
 include $(IDA)/objdir.mak
 
 ifdef __LINUX
-PLUGIN_SCRIPT=-Wl,--version-script=../plugin.script
+PLUGIN_SCRIPT=-Wl,--version-script=$(IDA)/plugins/plugin.script
 endif
 
 $(rstub_BINARY): $(IDA)/plugins/plugin.script $(rstub_OBJS)

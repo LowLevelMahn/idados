@@ -95,14 +95,14 @@ public:
     const char *input_path,
     uint32 input_file_crc32);
   virtual gdecode_t  idaapi dbg_get_debug_event(debug_event_t *event, int timeout_ms);
-  virtual int  idaapi dbg_attach_process(pid_t process_id, int event_id);
+  virtual int  idaapi dbg_attach_process(pid_t process_id, int event_id, int flags);
   virtual int  idaapi dbg_prepare_to_pause_process(void);
   virtual int  idaapi dbg_exit_process(void);
   virtual int  idaapi dbg_continue_after_event(const debug_event_t *event);
   virtual void idaapi dbg_stopped_at_debug_event(void);
   virtual int  idaapi dbg_thread_suspend(thid_t thread_id);
   virtual int  idaapi dbg_thread_continue(thid_t thread_id);
-  virtual int  idaapi dbg_thread_set_step(thid_t thread_id);
+  virtual int  idaapi dbg_set_resume_mode(thid_t thread_id, resume_mode_t resmod);
   virtual int  idaapi dbg_read_registers(thid_t thread_id, int clsmask, regval_t *values);
   virtual int  idaapi dbg_write_register(thid_t thread_id,
     int reg_idx,

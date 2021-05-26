@@ -456,7 +456,7 @@ gdecode_t idaapi dosbox_debmod_t::dbg_get_debug_event(debug_event_t *event, int 
 }
 
 //--------------------------------------------------------------------------
-int idaapi dosbox_debmod_t::dbg_attach_process(pid_t pid, int /*event_id*/)
+int idaapi dosbox_debmod_t::dbg_attach_process(pid_t pid, int /*event_id*/, int /* flags */)
 {
 /*
   if ( !trk.attach_process(pid) )
@@ -652,8 +652,11 @@ int idaapi dosbox_debmod_t::dbg_thread_continue(thid_t tid)
 }
 
 //--------------------------------------------------------------------------
-int idaapi dosbox_debmod_t::dbg_thread_set_step(thid_t tid)
+int idaapi dosbox_debmod_t::dbg_set_resume_mode(thid_t tid, resume_mode_t resmod)
 {
+  if ( resmod != RESMOD_INTO )
+    return 0; // not supported
+
   stepping[tid] = true;
   dosbox_step_ret = DEBUG_RemoteStep(); //fixme step return.
 
